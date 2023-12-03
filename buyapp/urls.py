@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login',views.obtain_auth_token),
     # path('', include(UserRouter)),
-    path('logout', include(LogoutUserRouter)),
+    # path('logout', include(LogoutUserRouter)),
     # path('', include(ProdRouter)),
     # path('', include(LojaRouter)),
     # path('', include(CatRouter))
