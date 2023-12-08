@@ -1,8 +1,11 @@
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 from .views import UsuarioModelViewSet, LogoutModelView
+from django.urls import path, include
 
-UserRouter = SimpleRouter()
-UserRouter.register('User', UsuarioModelViewSet)
+router = DefaultRouter()
+router.register(r'user', UsuarioModelViewSet, basename='user')
+router.register(r'logout', LogoutModelView, basename='logout')
 
-LogoutUserRouter=SimpleRouter()
-LogoutUserRouter.register('logout',LogoutModelView)
+urlpatterns = [
+    path('', include(router.urls)),
+]

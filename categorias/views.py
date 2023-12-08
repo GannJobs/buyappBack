@@ -16,14 +16,11 @@ class CategoraisModelViewSet(ModelViewSet):
     queryset = Categorias.objects.all()
 
     def list(self, request):  
-        dono = Usuario.objects.get(Ente=request.user)
+        dono = Usuario.objects.get(Pessoa=request.user)
         loja = Loja.objects.get(Dono=dono)
-        categoria = Categorias.objects.filter(Loja=loja, many=True)
-        data = CategoriasSerializer(categoria, many=True)
-        return Response({
-            'status': 200,
-            'Categorias': data.data
-        })
+        categorias = Categorias.objects.filter(Loja=loja)
+        serializer = CategoriasSerializer(categorias, many=True)
+        return Response({'status': 200, 'Categorias': serializer.data})
     
     def create(self, request):
         nome = request.data.get('nome')

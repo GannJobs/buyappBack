@@ -18,17 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.authtoken import views
 
-from user.urls import UserRouter, LogoutUserRouter
-from produtos.urls import ProdRouter
-from loja.urls import LojaRouter
-from categorias.urls import CatRouter
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login',views.obtain_auth_token),
-    # path('', include(UserRouter)),
-    # path('logout', include(LogoutUserRouter)),
-    # path('', include(ProdRouter)),
-    # path('', include(LojaRouter)),
-    # path('', include(CatRouter))
+    path('usr/', include('user.urls')),
+    path('loj/', include('loja.urls')),
+    path('cat/', include('categorias.urls')),
+    path('pd/', include('produtos.urls')),
 ]

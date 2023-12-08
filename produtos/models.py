@@ -6,4 +6,4 @@ class Produto(models.Model):
     Valor = models.CharField(max_length=20)
     Marca = models.CharField(max_length=20)
     img = models.CharField(max_length=200, default='#')
-    Categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)
+    Categoria = models.ForeignKey(Categorias, related_name='categorias', on_delete=models.CASCADE)

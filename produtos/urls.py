@@ -1,5 +1,10 @@
-from rest_framework.routers import SimpleRouter
 from .views import ProdutoModelViewSet
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
-ProdRouter = SimpleRouter()
-ProdRouter.register('Prod', ProdutoModelViewSet)
+router = DefaultRouter()
+router.register(r'prod', ProdutoModelViewSet, basename='prod')
+
+urlpatterns = [
+    path('', include(router.urls)),
+]

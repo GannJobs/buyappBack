@@ -5,6 +5,8 @@ from .models import Loja
 from user.models import Usuario
 from .serializer import LojaSerializer
 from rest_framework.response import Response
+from rest_framework.decorators import action
+
 
 # Create your views here.
 class LojaModelViewSet(ModelViewSet):
@@ -14,10 +16,20 @@ class LojaModelViewSet(ModelViewSet):
     queryset = Loja.objects.all()
 
     def list(self, request):
-        dono = Usuario.objects.get(Ente=request.user)
+        dono = Usuario.objects.get(Pessoa=request.user)
         l = Loja.objects.get(Dono=dono)
-        loja = LojaSerializer(Loja)    
+        loja = LojaSerializer(l)    
         return Response({
-            'status':200,
+            'status':302,
+            'Loja': loja.data
+        })
+    
+    @action(methods=["get"], detail=False)
+    def lojaU(self, request):
+        id = request.GET.get('id')
+        l = Loja.objects.get(id=id)
+        loja = LojaSerializer(l)    
+        return Response({
+            'status':302,
             'Loja': loja.data
         })

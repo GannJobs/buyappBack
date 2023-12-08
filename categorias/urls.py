@@ -1,5 +1,10 @@
-from rest_framework.routers import SimpleRouter
 from .views import CategoraisModelViewSet
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
-CatRouter = SimpleRouter()
-CatRouter.register('Cat', CategoraisModelViewSet)
+router = DefaultRouter()
+router.register(r'Catg', CategoraisModelViewSet, basename='Catg')
+
+urlpatterns = [
+    path('', include(router.urls)),
+]

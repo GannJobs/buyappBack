@@ -17,9 +17,9 @@ class UsuarioModelViewSet(ModelViewSet):
 # retornar os dados principais
     @action(methods=["get"], detail=False)
     def me(self, request):
-        user = Usuario.objects.get(Ente=request.user)
+        user = Usuario.objects.get(Pessoa=request.user)
         serial = UsuarioSerializer(user)
-        return Response({'status': 302, 'Entidade': serial.data})
+        return Response({'status': 302, 'Pessoa': serial.data})
     
 class LogoutModelView(ModelViewSet):
     serializer_class = LogoutSerializer

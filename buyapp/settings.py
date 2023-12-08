@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-7=$nk494%qf*bn&kqtf-1r+ya+z6ay2f^r7j-_k@qwntdjc%j4
 DEBUG = True
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -61,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
+    'corsheaders',
     'rest_framework',
     'django_extensions',
     'categorias',
@@ -78,7 +81,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'buyapp.urls'

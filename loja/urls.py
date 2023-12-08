@@ -1,5 +1,10 @@
-from rest_framework.routers import SimpleRouter
 from .views import LojaModelViewSet
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
-LojaRouter = SimpleRouter()
-LojaRouter.register('Loja', LojaModelViewSet)
+router = DefaultRouter()
+router.register(r'loja', LojaModelViewSet, basename='loja')
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
